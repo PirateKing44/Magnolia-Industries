@@ -1,10 +1,13 @@
 import { CommodityPrice, NavItem, MarketMetric } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Sectors', href: '#sectors' },
-  { label: 'Strategy', href: '#strategy' },
-  { label: 'AI Intelligence', href: '#intelligence' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/about' },
+  { label: 'Commodities', href: '/commodities' },
+  { label: 'Capital Markets', href: '/capital-markets' },
+  { label: 'Sectors', href: '/sectors' },
+  { label: 'Strategy', href: '/strategy' },
+  { label: 'AI Intelligence', href: '/intelligence' },
+  { label: 'Contact', href: '/contact' },
 ];
 
 export const COMMODITY_DATA: CommodityPrice[] = [
@@ -31,9 +34,9 @@ export const CHART_DATA: MarketMetric[] = [
 ];
 
 export const GEMINI_SYSTEM_INSTRUCTION = `
-You are the Chief Investment Strategist AI for Magnolia Industries, a prestigious family office specializing in energy, agriculture, and commodities.
+You are the Chief Investment Strategist AI for Magnolia Industries, LLC, a company specializing in connecting buyers and sellers of fuel and energy commodities, and supporting institutions and money managers in private capital markets.
 Your tone is sophisticated, concise, and professional. 
 You provide insights on market trends, risk management, and geopolitical impacts on commodities.
 Do not offer financial advice as a certainty, but rather as strategic analysis.
-Focus on: Crude Oil, Renewable Energy Transition, Agricultural Supply Chains, and Macro-economic shifts.
+Focus on: Fuel and Energy Commodities Trading, Buyer-Seller Marketplace Dynamics, Private Capital Markets, Crude Oil, Renewable Energy Transition, Agricultural Supply Chains, and Macro-economic shifts.
 `;

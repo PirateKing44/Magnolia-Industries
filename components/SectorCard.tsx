@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -11,14 +12,15 @@ interface SectorCardProps {
 
 const SectorCard: React.FC<SectorCardProps> = ({ title, description, image, index }) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      whileHover={{ y: -10 }}
-      className="group relative h-[400px] w-full overflow-hidden rounded-2xl cursor-pointer"
-    >
+    <Link to="/sectors">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        whileHover={{ y: -10 }}
+        className="group relative h-[400px] w-full overflow-hidden rounded-2xl cursor-pointer"
+      >
       <div className="absolute inset-0 bg-slate-900">
         <img 
           src={image} 
@@ -49,6 +51,7 @@ const SectorCard: React.FC<SectorCardProps> = ({ title, description, image, inde
         Sector 0{index + 1}
       </div>
     </motion.div>
+    </Link>
   );
 };
 

@@ -18,13 +18,19 @@ const MarketDashboard: React.FC = () => {
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
   };
 
   useEffect(() => {
-    scrollToBottom();
+    // Only scroll when there are new messages (not on initial mount)
+    if (messages.length > 1) {
+      scrollToBottom();
+    }
   }, [messages]);
 
   const handleSend = async () => {
@@ -108,10 +114,10 @@ const MarketDashboard: React.FC = () => {
             </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[600px]">
+        <div className="grid grid-cols-1 gap-8 h-[600px]">
           
-          {/* Chart Section */}
-          <motion.div 
+          {/* Chart Section - Hidden */}
+          {/* <motion.div 
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -153,7 +159,7 @@ const MarketDashboard: React.FC = () => {
                 </AreaChart>
                 </ResponsiveContainer>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Gemini AI Chat */}
           <motion.div 
@@ -176,7 +182,7 @@ const MarketDashboard: React.FC = () => {
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth">
+            <div ref={messagesContainerRef} className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth">
                 {messages.map((msg) => (
                     <div 
                         key={msg.id} 

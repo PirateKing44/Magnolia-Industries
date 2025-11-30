@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import logoImage from '../assets/thumbnail_image001.png';
 
@@ -16,17 +17,20 @@ const Footer: React.FC = () => {
               />
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
-              Stewarding capital through generations. Specializing in the physical and financial trading of global commodities.
+              Magnolia Industries, LLC - Connecting buyers and sellers of fuel and energy commodities, and supporting institutions and money managers in private capital markets.
             </p>
           </div>
           
           <div>
-            <h4 className="text-white font-bold mb-6">Sectors</h4>
+            <h4 className="text-white font-bold mb-6">Pages</h4>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li className="hover:text-blue-400 cursor-pointer transition">Energy Trading</li>
-              <li className="hover:text-blue-400 cursor-pointer transition">Sustainable Agriculture</li>
-              <li className="hover:text-blue-400 cursor-pointer transition">Precious Metals</li>
-              <li className="hover:text-blue-400 cursor-pointer transition">Venture Capital</li>
+              <li><Link to="/about" className="hover:text-blue-400 transition">About</Link></li>
+              <li><Link to="/commodities" className="hover:text-blue-400 transition">Commodities Trading</Link></li>
+              <li><Link to="/capital-markets" className="hover:text-blue-400 transition">Capital Markets</Link></li>
+              <li><Link to="/sectors" className="hover:text-blue-400 transition">Sectors</Link></li>
+              <li><Link to="/strategy" className="hover:text-blue-400 transition">Strategy</Link></li>
+              <li><Link to="/intelligence" className="hover:text-blue-400 transition">AI Intelligence</Link></li>
+              <li><Link to="/contact" className="hover:text-blue-400 transition">Contact</Link></li>
             </ul>
           </div>
 
@@ -35,15 +39,19 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-start gap-2">
                  <MapPin size={16} className="text-blue-500 mt-1 shrink-0" />
-                 <span>Geneva, Switzerland<br/>Headquarters</span>
+                 <span>Wyoming, USA</span>
               </li>
               <li className="flex items-start gap-2">
                  <MapPin size={16} className="text-blue-500 mt-1 shrink-0" />
-                 <span>Houston, TX, USA<br/>Energy Desk</span>
+                 <span>New Jersey, USA</span>
               </li>
               <li className="flex items-start gap-2">
                  <MapPin size={16} className="text-blue-500 mt-1 shrink-0" />
-                 <span>Singapore<br/>APAC Operations</span>
+                 <span>New York, USA</span>
+              </li>
+              <li className="flex items-start gap-2">
+                 <MapPin size={16} className="text-blue-500 mt-1 shrink-0" />
+                 <span>South Carolina, USA</span>
               </li>
             </ul>
           </div>
@@ -53,11 +61,11 @@ const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm text-slate-400">
               <li className="flex items-center gap-2">
                 <Mail size={16} className="text-blue-500" />
-                <span>investor.relations@magnolia.industries</span>
+                <a href="mailto:info@magnoliaind.com" className="hover:text-blue-400 transition">info@magnoliaind.com</a>
               </li>
               <li className="flex items-center gap-2">
-                <Phone size={16} className="text-blue-500" />
-                <span>+41 22 555 0199</span>
+                <span className="text-blue-500">🌐</span>
+                <a href="https://magnoliaind.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition">MagnoliaInd.com</a>
               </li>
             </ul>
             <div className="mt-6">
@@ -69,7 +77,7 @@ const Footer: React.FC = () => {
         </div>
         
         <div className="border-t border-slate-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-600">
-          <p>&copy; {new Date().getFullYear()} Magnolia Industries. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Magnolia Industries, LLC. All rights reserved.</p>
           <div className="flex gap-6 mt-4 md:mt-0">
             <span className="cursor-pointer hover:text-slate-400">Privacy Policy</span>
             <span className="cursor-pointer hover:text-slate-400">Terms of Service</span>
