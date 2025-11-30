@@ -95,7 +95,7 @@ const MarketDashboard: React.FC = () => {
             <motion.span 
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
-                className="text-gold-500 font-semibold tracking-widest uppercase text-sm"
+                className="text-blue-500 font-semibold tracking-widest uppercase text-sm"
             >
                 AI-Powered Strategy
             </motion.span>
@@ -119,7 +119,7 @@ const MarketDashboard: React.FC = () => {
           >
             <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-3">
-                    <div className="p-2 bg-slate-800 rounded-lg text-gold-500">
+                    <div className="p-2 bg-slate-800 rounded-lg text-blue-500">
                         <BarChart3 size={20} />
                     </div>
                     <div>
@@ -129,7 +129,7 @@ const MarketDashboard: React.FC = () => {
                 </div>
                 <div className="flex gap-2">
                     <button className="px-3 py-1 text-xs bg-slate-800 text-slate-300 rounded hover:text-white transition">1M</button>
-                    <button className="px-3 py-1 text-xs bg-gold-600 text-slate-950 rounded font-bold">1Y</button>
+                    <button className="px-3 py-1 text-xs bg-blue-600 text-white rounded font-bold">1Y</button>
                 </div>
             </div>
             
@@ -138,8 +138,8 @@ const MarketDashboard: React.FC = () => {
                 <AreaChart data={CHART_DATA}>
                     <defs>
                     <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#EAB308" stopOpacity={0.3}/>
-                        <stop offset="95%" stopColor="#EAB308" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#2563eb" stopOpacity={0.3}/>
+                        <stop offset="95%" stopColor="#2563eb" stopOpacity={0}/>
                     </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
@@ -147,9 +147,9 @@ const MarketDashboard: React.FC = () => {
                     <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
                     <Tooltip 
                         contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', color: '#f8fafc' }}
-                        itemStyle={{ color: '#EAB308' }}
+                        itemStyle={{ color: '#2563eb' }}
                     />
-                    <Area type="monotone" dataKey="value" stroke="#EAB308" strokeWidth={2} fillOpacity={1} fill="url(#colorValue)" />
+                    <Area type="monotone" dataKey="value" stroke="#2563eb" strokeWidth={2} fillOpacity={1} fill="url(#colorValue)" />
                 </AreaChart>
                 </ResponsiveContainer>
             </div>
@@ -160,18 +160,18 @@ const MarketDashboard: React.FC = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="bg-slate-950 border border-gold-500/20 rounded-2xl flex flex-col shadow-2xl shadow-gold-900/5 relative overflow-hidden"
+            className="bg-slate-950 border border-blue-500/20 rounded-2xl flex flex-col shadow-2xl shadow-blue-900/5 relative overflow-hidden"
           >
-            <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent opacity-50"></div>
+            <div className="absolute top-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-50"></div>
             
             {/* Header */}
             <div className="p-4 border-b border-slate-800 bg-slate-900/50 flex items-center gap-3">
-                <div className="p-2 bg-gradient-to-br from-gold-400 to-amber-600 rounded-lg shadow-lg">
-                    <Bot size={20} className="text-slate-950" />
+                <div className="p-2 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg shadow-lg">
+                    <Bot size={20} className="text-white" />
                 </div>
                 <div>
                     <h3 className="text-white font-medium">Magnolia Analyst</h3>
-                    <p className="text-xs text-gold-500/80 font-mono">POWERED BY GEMINI 2.5</p>
+                    <p className="text-xs text-blue-500/80 font-mono">POWERED BY GEMINI 2.5</p>
                 </div>
             </div>
 
@@ -186,14 +186,14 @@ const MarketDashboard: React.FC = () => {
                             className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                                 msg.role === 'user' 
                                 ? 'bg-slate-800 text-white rounded-br-none border border-slate-700' 
-                                : 'bg-gold-500/10 text-slate-200 rounded-bl-none border border-gold-500/20'
+                                : 'bg-blue-500/10 text-slate-200 rounded-bl-none border border-blue-500/20'
                             }`}
                         >
                             {msg.role === 'model' && msg.isLoading && !msg.text ? (
                                 <div className="flex gap-1 items-center h-5">
-                                    <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-bounce"></span>
-                                    <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-bounce delay-100"></span>
-                                    <span className="w-1.5 h-1.5 bg-gold-500 rounded-full animate-bounce delay-200"></span>
+                                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce"></span>
+                                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce delay-100"></span>
+                                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce delay-200"></span>
                                 </div>
                             ) : (
                                 // Render simple markdown-like formatting (basic)
@@ -216,13 +216,13 @@ const MarketDashboard: React.FC = () => {
                         onChange={(e) => setInput(e.target.value)}
                         onKeyDown={handleKeyDown}
                         placeholder="Ask about market trends, crude oil outlook..."
-                        className="w-full bg-slate-950 border border-slate-800 text-white rounded-xl py-3 pl-4 pr-12 focus:outline-none focus:border-gold-500/50 focus:ring-1 focus:ring-gold-500/50 transition-all placeholder:text-slate-600"
+                        className="w-full bg-slate-950 border border-slate-800 text-white rounded-xl py-3 pl-4 pr-12 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition-all placeholder:text-slate-600"
                         disabled={loading}
                     />
                     <button 
                         onClick={handleSend}
                         disabled={loading || !input.trim()}
-                        className="absolute right-2 top-2 p-1.5 bg-gold-600 text-slate-950 rounded-lg hover:bg-gold-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                        className="absolute right-2 top-2 p-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
                     >
                         {loading ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                     </button>

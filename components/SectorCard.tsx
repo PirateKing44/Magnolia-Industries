@@ -32,20 +32,20 @@ const SectorCard: React.FC<SectorCardProps> = ({ title, description, image, inde
       <div className="absolute bottom-0 left-0 p-8 w-full">
         <div className="flex justify-between items-end">
           <div>
-            <h3 className="text-2xl font-serif font-bold text-white mb-2 group-hover:text-gold-400 transition-colors">
+            <h3 className="text-2xl font-serif font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
               {title}
             </h3>
             <p className="text-slate-300 text-sm line-clamp-2 group-hover:line-clamp-none transition-all duration-300 max-w-[90%]">
               {description}
             </p>
           </div>
-          <div className="bg-gold-500 rounded-full p-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+          <div className="bg-blue-500 rounded-full p-2 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
             <ArrowUpRight className="text-slate-950" size={20} />
           </div>
         </div>
       </div>
       
-      <div className="absolute top-6 right-6 px-3 py-1 bg-slate-950/30 backdrop-blur border border-white/10 rounded-full text-xs font-mono text-gold-400 uppercase tracking-wider">
+      <div className="absolute top-6 right-6 px-3 py-1 bg-slate-950/30 backdrop-blur border border-white/10 rounded-full text-xs font-mono text-blue-400 uppercase tracking-wider">
         Sector 0{index + 1}
       </div>
     </motion.div>

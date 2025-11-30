@@ -9,9 +9,9 @@ const Hero: React.FC = () => {
     <div className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-slate-950">
       {/* Dynamic Background */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute top-0 -left-4 w-96 h-96 bg-gold-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
+        <div className="absolute top-0 -left-4 w-96 h-96 bg-blue-600 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
         <div className="absolute top-0 -right-4 w-96 h-96 bg-blue-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-32 left-20 w-96 h-96 bg-green-900 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-4000"></div>
+        <div className="absolute -bottom-32 left-20 w-96 h-96 bg-blue-800 rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-4000"></div>
         
         {/* Grid overlay */}
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
@@ -27,7 +27,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-gold-500 font-semibold tracking-[0.3em] uppercase mb-4 text-sm md:text-base"
+            className="text-blue-500 font-semibold tracking-[0.3em] uppercase mb-4 text-sm md:text-base"
           >
             Since 1982
           </motion.h2>
@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
             transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
             className="text-5xl md:text-8xl font-serif font-bold text-white mb-6 leading-tight"
           >
-            Fueling <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-gold-500 to-amber-700">Global</span><br />
+            Fueling <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-blue-500 to-blue-700">Global</span><br />
             Prosperity
           </motion.h1>
 
