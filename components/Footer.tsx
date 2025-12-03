@@ -43,14 +43,6 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-start gap-2">
                  <MapPin size={16} className="text-blue-500 mt-1 shrink-0" />
-                 <span>New Jersey, USA</span>
-              </li>
-              <li className="flex items-start gap-2">
-                 <MapPin size={16} className="text-blue-500 mt-1 shrink-0" />
-                 <span>New York, USA</span>
-              </li>
-              <li className="flex items-start gap-2">
-                 <MapPin size={16} className="text-blue-500 mt-1 shrink-0" />
                  <span>South Carolina, USA</span>
               </li>
             </ul>

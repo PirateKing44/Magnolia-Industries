@@ -166,3 +166,4 @@ class CommodityService {
 
 // Export singleton instance
 export const commodityService = new CommodityService();
+

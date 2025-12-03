@@ -8,19 +8,9 @@ import { Link } from 'react-router-dom';
 const Home: React.FC = () => {
   const sectors = [
     {
-      title: "Energy & Renewables",
-      description: "From traditional crude derivatives to the forefront of solar and hydrogen infrastructure. We bridge the gap between today's demand and tomorrow's sustainability.",
+      title: "Energy (Oil & Refined Products)",
+      description: "From traditional crude derivatives to refined products trading. We specialize in connecting buyers and sellers of fuel and energy commodities.",
       image: "https://picsum.photos/800/600?random=1"
-    },
-    {
-      title: "Global Agriculture",
-      description: "Strategic investments in supply chain resilience, ag-tech, and commodity trading across wheat, soy, and coffee markets.",
-      image: "https://picsum.photos/800/600?random=2"
-    },
-    {
-      title: "Precious Metals",
-      description: "Hedging inflation and currency risk through physical allocation in gold, silver, and rare earth elements crucial for technology.",
-      image: "https://picsum.photos/800/600?random=3"
     },
     {
       title: "Private Capital",
@@ -110,3 +100,4 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+

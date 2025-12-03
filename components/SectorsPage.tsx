@@ -1,53 +1,23 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Zap, Wheat, Gem, TrendingUp } from 'lucide-react';
+import { ArrowUpRight, Zap, TrendingUp } from 'lucide-react';
 
 const SectorsPage: React.FC = () => {
   const sectors = [
     {
       icon: <Zap size={32} />,
-      title: 'Energy & Renewables',
-      description: 'From traditional crude derivatives to the forefront of solar and hydrogen infrastructure. We bridge the gap between today\'s demand and tomorrow\'s sustainability.',
+      title: 'Energy (Oil & Refined Products)',
+      description: 'From traditional crude derivatives to refined products trading. We specialize in connecting buyers and sellers of fuel and energy commodities.',
       focus: 'Fuel Trading & Energy Commodities',
       details: [
         'Crude oil and refined products trading',
         'Natural gas and LNG transactions',
-        'Renewable energy infrastructure',
-        'Solar and hydrogen market development',
-        'Energy storage solutions',
-        'Market analysis and price optimization'
+        'Market analysis and price optimization',
+        'Buyer-seller marketplace facilitation',
+        'Energy commodity supply chain management',
+        'Strategic fuel procurement and distribution'
       ],
       color: 'blue'
-    },
-    {
-      icon: <Wheat size={32} />,
-      title: 'Global Agriculture',
-      description: 'Strategic investments in supply chain resilience, ag-tech, and commodity trading across wheat, soy, and coffee markets.',
-      focus: 'Agricultural Commodities & Supply Chain',
-      details: [
-        'Wheat, soy, and coffee trading',
-        'Agricultural supply chain management',
-        'Ag-tech innovation investments',
-        'Food security solutions',
-        'Commodity price risk management',
-        'Sustainable farming practices'
-      ],
-      color: 'green'
-    },
-    {
-      icon: <Gem size={32} />,
-      title: 'Precious Metals',
-      description: 'Hedging inflation and currency risk through physical allocation in gold, silver, and rare earth elements crucial for technology.',
-      focus: 'Precious Metals & Rare Earth Elements',
-      details: [
-        'Gold and silver trading',
-        'Rare earth elements for technology',
-        'Inflation hedging strategies',
-        'Currency risk management',
-        'Physical asset allocation',
-        'Market timing and analysis'
-      ],
-      color: 'yellow'
     },
     {
       icon: <TrendingUp size={32} />,
@@ -252,3 +222,4 @@ const SectorsPage: React.FC = () => {
 };
 
 export default SectorsPage;
+
