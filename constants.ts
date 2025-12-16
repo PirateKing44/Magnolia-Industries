@@ -2,11 +2,21 @@ import { CommodityPrice, NavItem, MarketMetric } from './types';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: 'About', href: '/about' },
-  { label: 'Commodities', href: '/commodities' },
-  { label: 'Capital Markets', href: '/capital-markets' },
-  { label: 'Sectors', href: '/sectors' },
-  { label: 'Strategy', href: '/strategy' },
-  { label: 'AI Intelligence', href: '/intelligence' },
+  { 
+    label: 'Sectors', 
+    href: '/sectors',
+    children: [
+      { label: 'Commodities', href: '/commodities' },
+      { label: 'Capital Markets', href: '/capital-markets' },
+    ],
+  },
+  { 
+    label: 'Strategy', 
+    href: '/strategy',
+    children: [
+      { label: 'AI Intelligence', href: '/intelligence' },
+    ],
+  },
   { label: 'Contact', href: '/contact' },
 ];
 

@@ -27,5 +27,6 @@ export interface MarketMetric {
 
 export interface NavItem {
   label: string;
-  href: string;
+  href?: string;
+  children?: NavItem[];
 }

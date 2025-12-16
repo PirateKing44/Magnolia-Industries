@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight, TrendingUp, TrendingDown } from 'lucide-react';
+import { Menu, X, ArrowRight, TrendingUp, TrendingDown, ChevronDown } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoImage from '../assets/thumbnail_image001.png';
 import { commodityService } from '../services/commodityService';
-import { CommodityPrice } from '../types';
+import { CommodityPrice, NavItem } from '../types';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [commodityData, setCommodityData] = useState<CommodityPrice[]>([]);
+  const [openSubmenus, setOpenSubmenus] = useState<Record<string, boolean>>({});
   const location = useLocation();
 
   useEffect(() => {
@@ -51,6 +52,68 @@ const Navbar: React.FC = () => {
     </div>
   );
 
+  const renderLink = (item: NavItem, className: string, onClick?: () => void) => {
+    if (item.href?.startsWith('#')) {
+      return (
+        <a
+          key={item.label}
+          href={item.href}
+          onClick={onClick}
+          className={className}
+        >
+          {item.label}
+        </a>
+      );
+    }
+
+    return (
+      <Link
+        key={item.label}
+        to={item.href || '/'}
+        onClick={onClick}
+        className={className}
+      >
+        {item.label}
+      </Link>
+    );
+  };
+
+  const renderDesktopNavItem = (item: NavItem) => {
+    const baseClasses =
+      'text-slate-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 uppercase tracking-widest';
+
+    if (item.children?.length) {
+      return (
+        <div key={item.label} className="relative group flex items-center">
+          {renderLink(item, `${baseClasses} flex items-center gap-1 pr-1`)}
+          <ChevronDown
+            size={16}
+            className="ml-1 text-slate-500 transition-transform duration-200 group-hover:rotate-180"
+          />
+          <div className="pointer-events-none absolute left-0 top-full w-56 pt-2 opacity-0 translate-y-1 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto z-50">
+            <div className="overflow-hidden rounded-xl bg-white shadow-xl ring-1 ring-blue-100">
+              {item.children.map((child) =>
+                renderLink(
+                  child,
+                  'flex items-center justify-between px-4 py-3 text-sm text-slate-800 hover:bg-blue-50 hover:text-blue-700 transition-colors',
+                )
+              )}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return renderLink(item, baseClasses);
+  };
+
+  const toggleSubmenu = (label: string) => {
+    setOpenSubmenus((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 flex flex-col ${
@@ -75,30 +138,8 @@ const Navbar: React.FC = () => {
             </Link>
             
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
-                {NAV_ITEMS.map((item) => {
-                  // Handle anchor links (like #intelligence) vs route links
-                  if (item.href.startsWith('#')) {
-                    return (
-                      <a
-                        key={item.label}
-                        href={item.href}
-                        className="text-slate-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 uppercase tracking-widest"
-                      >
-                        {item.label}
-                      </a>
-                    );
-                  }
-                  return (
-                    <Link
-                      key={item.label}
-                      to={item.href}
-                      className="text-slate-900 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 uppercase tracking-widest"
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
+              <div className="ml-10 flex items-center space-x-8">
+                {NAV_ITEMS.map(renderDesktopNavItem)}
                 <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-full font-bold text-sm transition-all transform hover:scale-105 flex items-center gap-2">
                   Client Portal <ArrowRight size={16} />
                 </button>
@@ -118,7 +159,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* Market Ticker - Stuck to bottom of Header */}
-      <div className="w-full bg-gradient-to-r from-blue-50 to-blue-100 backdrop-blur-md border-b border-blue-200/50 overflow-hidden flex z-40 h-10 items-center">
+      <div className="relative z-0 w-full bg-gradient-to-r from-blue-50 to-blue-100 backdrop-blur-md border-b border-blue-200/50 overflow-hidden flex h-10 items-center">
          <div className="animate-marquee whitespace-nowrap flex items-center">
             {commodityData.map((item, idx) => <TickerItem key={idx} item={item} />)}
             {/* Duplicate for seamless loop */}
@@ -136,27 +177,44 @@ const Navbar: React.FC = () => {
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {NAV_ITEMS.map((item) => {
-                if (item.href.startsWith('#')) {
+                if (item.children?.length) {
                   return (
-                    <a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-slate-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
-                    >
-                      {item.label}
-                    </a>
+                    <div key={item.label} className="overflow-hidden rounded-lg border border-blue-100 bg-white/60 backdrop-blur relative z-10">
+                      <div className="flex items-center justify-between px-3 py-2">
+                        {renderLink(
+                          item,
+                          'text-slate-900 font-medium uppercase tracking-widest',
+                          () => setIsOpen(false)
+                        )}
+                        <button
+                          onClick={() => toggleSubmenu(item.label)}
+                          className="p-1 rounded-md text-slate-600 hover:text-blue-700 hover:bg-blue-50 transition-colors"
+                        >
+                          <ChevronDown
+                            size={18}
+                            className={`transition-transform ${openSubmenus[item.label] ? 'rotate-180' : ''}`}
+                          />
+                        </button>
+                      </div>
+                      {openSubmenus[item.label] && (
+                        <div className="space-y-1 pb-3">
+                          {item.children.map((child) =>
+                            renderLink(
+                              child,
+                              'block px-6 py-2 text-slate-800 hover:bg-blue-50 hover:text-blue-700 transition-colors',
+                              () => setIsOpen(false)
+                            )
+                          )}
+                        </div>
+                      )}
+                    </div>
                   );
                 }
-                return (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    onClick={() => setIsOpen(false)}
-                    className="text-slate-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
-                  >
-                    {item.label}
-                  </Link>
+
+                return renderLink(
+                  item,
+                  'text-slate-900 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium',
+                  () => setIsOpen(false)
                 );
               })}
             </div>
