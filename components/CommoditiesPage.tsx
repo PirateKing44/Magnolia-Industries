@@ -268,3 +268,5 @@ const CommoditiesPage: React.FC = () => {
 
 export default CommoditiesPage;
 
+
+

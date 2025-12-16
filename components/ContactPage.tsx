@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin, Send, Phone } from 'lucide-react';
+import { emailService } from '../services/emailService';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -12,16 +13,27 @@ const ContactPage: React.FC = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real application, this would send the form data to a backend
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setLoading(true);
+    setError(null);
+
+    try {
+      await emailService.sendContactEmail(formData);
+      setSubmitted(true);
       setFormData({ name: '', email: '', company: '', subject: '', message: '' });
-    }, 3000);
+      setTimeout(() => {
+        setSubmitted(false);
+      }, 5000);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+      console.error('Form submission error:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -78,6 +90,12 @@ const ContactPage: React.FC = () => {
               className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8"
             >
               <h2 className="text-2xl font-serif font-bold text-white mb-6">Send us a Message</h2>
+              
+              {error && (
+                <div className="bg-red-500/10 border border-red-500/50 rounded-lg p-4 mb-6">
+                  <p className="text-red-400 font-semibold text-sm">{error}</p>
+                </div>
+              )}
               
               {submitted ? (
                 <div className="bg-green-500/10 border border-green-500/50 rounded-lg p-6 text-center">
@@ -172,10 +190,20 @@ const ContactPage: React.FC = () => {
 
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2"
+                    disabled={loading}
+                    className="w-full bg-blue-600 hover:bg-blue-500 disabled:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 text-white font-semibold py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2"
                   >
-                    <Send size={20} />
-                    Send Message
+                    {loading ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send size={20} />
+                        Send Message
+                      </>
+                    )}
                   </button>
                 </form>
               )}
@@ -278,4 +306,6 @@ const ContactPage: React.FC = () => {
 };
 
 export default ContactPage;
+
+
 
