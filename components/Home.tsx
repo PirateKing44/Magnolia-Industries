@@ -67,7 +67,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Market Dashboard (Gemini + Charts) */}
-      <MarketDashboard />
+      {/* <MarketDashboard /> */}
 
       {/* CTA / Contact Section */}
       <section id="contact" className="py-32 bg-blue-600 relative overflow-hidden">
